@@ -1,0 +1,47 @@
+<div class="min-h-screen bg-gray-50">
+  <app-header [isHome]="false" />
+
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    @if (state$ | async; as state) {
+      @if (state.loading) {
+        <app-loading-spinner />
+      } @else if (state.error) {
+        <app-error [error]="state.error" />
+      } @else if (state.user) {
+        <app-user-profile [user]="state.user" />
+
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="text-xl font-bold text-gray-900">Repositories</h2>
+            <span class="text-gray-500 text-sm"
+              >{{ state.repoCount }} total</span
+            >
+          </div>
+
+          @if (state.repos.length === 0) {
+            <div class="card text-center py-8">
+              <p class="text-gray-500">No repositories found</p>
+            </div>
+          } @else {
+            <div class="space-y-3">
+              @for (repo of state.repos; track repo.id) {
+                <app-repo-item [repo]="repo" />
+              }
+            </div>
+
+            @if (state.hasMore) {
+              <div
+                #scrollTrigger
+                class="mt-6 h-16 flex justify-center items-center"
+              >
+                @if (state.loadingMore) {
+                  <span class="text-gray-500 text-sm">Loading more...</span>
+                }
+              </div>
+            }
+          }
+        </div>
+      }
+    }
+  </main>
+</div>
