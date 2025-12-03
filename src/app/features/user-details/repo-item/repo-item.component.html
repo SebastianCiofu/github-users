@@ -1,31 +1,31 @@
-<a [href]="repo.url" target="_blank" class="card block group">
+<a [href]="repo.url" target="_blank" class="card block group bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700">
   <div class="flex items-start justify-between gap-4">
     <div class="flex-1 min-w-0">
-      <h3 class="text-blue-600 font-semibold group-hover:underline truncate">
+      <h3 class="text-blue-600 dark:text-blue-400 font-semibold group-hover:underline truncate">
         {{ repo.name }}
       </h3>
       @if (repo.description) {
-        <p class="text-gray-500 text-sm mt-1 line-clamp-2">
+        <p class="text-gray-500 dark:text-gray-400 text-sm mt-1 line-clamp-2">
           {{ repo.description }}
         </p>
       }
-      <div class="flex flex-wrap items-center gap-4 mt-3 text-xs text-gray-500">
+      <div class="flex flex-wrap items-center gap-4 mt-3 text-xs text-gray-500 dark:text-gray-400">
         @if (repo.primaryLanguage) {
           <span
-            >Language: <span class="text-gray-900">{{ repo.primaryLanguage.name }}</span></span
+            >Language: <span class="text-gray-900 dark:text-white">{{ repo.primaryLanguage.name }}</span></span
           >
         }
         <span
-          >Stars: <span class="text-gray-900">{{ repo.stargazerCount }}</span></span
+          >Stars: <span class="text-gray-900 dark:text-white">{{ repo.stargazerCount }}</span></span
         >
         <span
-          >Forks: <span class="text-gray-900">{{ repo.forkCount }}</span></span
+          >Forks: <span class="text-gray-900 dark:text-white">{{ repo.forkCount }}</span></span
         >
         <span>Updated {{ repo.updatedAt | date: 'MMM d, yyyy' }}</span>
       </div>
     </div>
     @if (repo.isPrivate) {
-      <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full">Private</span>
+      <span class="px-2 py-1 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 text-xs rounded-full">Private</span>
     }
   </div>
 </a>

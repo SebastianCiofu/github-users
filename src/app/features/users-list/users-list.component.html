@@ -1,4 +1,4 @@
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900">
   <app-header [isHome]="true" />
 
   <main class="max-w-4xl mx-auto px-4 py-8">
@@ -7,7 +7,7 @@
         type="text"
         placeholder="Search users"
         (input)="onSearch($event)"
-        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       />
     </div>
 
@@ -18,22 +18,22 @@
         <app-error [error]="state.error" />
       } @else {
         <div class="mb-6">
-          <p class="text-gray-500 text-sm">
+          <p class="text-gray-500 dark:text-gray-400 text-sm">
             @if (state.searchTerm) {
-              <span class="text-gray-900 font-medium">{{ state.totalCount.toLocaleString() }}</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ state.totalCount.toLocaleString() }}</span>
               results for "{{ state.searchTerm }}"
             } @else {
               Showing
-              <span class="text-gray-900 font-medium">{{ state.users.length }}</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ state.users.length }}</span>
               of
-              <span class="text-gray-900 font-medium">{{ state.totalCount.toLocaleString() }}</span>
+              <span class="text-gray-900 dark:text-white font-medium">{{ state.totalCount.toLocaleString() }}</span>
               users
             }
           </p>
         </div>
 
         @if (state.users.length === 0) {
-          <p class="text-gray-500">No results</p>
+          <p class="text-gray-500 dark:text-gray-400">No results</p>
         } @else {
           <div class="space-y-3">
             @for (user of state.users; track $index) {
@@ -44,7 +44,7 @@
           @if (state.hasMore) {
             <div #scrollTrigger class="mt-8 h-16 flex justify-center items-center">
               @if (state.loadingMore) {
-                <span class="text-gray-500 text-sm">Loading more...</span>
+                <span class="text-gray-500 dark:text-gray-400 text-sm">Loading more...</span>
               }
             </div>
           }

@@ -1,33 +1,35 @@
 <div class="flex flex-col sm:flex-row items-start gap-6 mb-8">
-  <img [src]="user.avatarUrl" [alt]="user.login" class="w-32 h-32 rounded-full ring-4 ring-gray-200 shadow-lg" />
+  <img [src]="user.avatarUrl" [alt]="user.login" class="w-32 h-32 rounded-full ring-4 ring-gray-200 dark:ring-gray-600 shadow-lg" />
   <div class="flex-1">
     <div class="flex items-center gap-3 mb-2">
-      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
         {{ user.name || user.login }}
       </h1>
-      <span class="px-3 py-1 bg-blue-100 text-blue-700 text-xs font-medium rounded-full">
+      <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 text-xs font-medium rounded-full">
         {{ user.type }}
       </span>
     </div>
-    <a [href]="user.url" target="_blank" class="text-blue-600 hover:underline text-lg inline-block"> &#64;{{ user.login }} </a>
+    <a [href]="user.url" target="_blank" class="text-blue-600 dark:text-blue-400 hover:underline text-lg inline-block">
+      &#64;{{ user.login }}
+    </a>
     @if (user.bio) {
-      <p class="text-gray-700 mt-3">{{ user.bio }}</p>
+      <p class="text-gray-700 dark:text-gray-300 mt-3">{{ user.bio }}</p>
     }
-    <div class="flex flex-wrap items-center gap-4 mt-4 text-sm text-gray-500">
+    <div class="flex flex-wrap items-center gap-4 mt-4 text-sm text-gray-500 dark:text-gray-400">
       @if (user.company) {
         <span
-          >Company: <span class="text-gray-900">{{ user.company }}</span></span
+          >Company: <span class="text-gray-900 dark:text-white">{{ user.company }}</span></span
         >
       }
       @if (user.location) {
         <span
-          >Location: <span class="text-gray-900">{{ user.location }}</span></span
+          >Location: <span class="text-gray-900 dark:text-white">{{ user.location }}</span></span
         >
       }
       <span>
-        <span class="text-gray-900">{{ user.followers.totalCount }}</span>
+        <span class="text-gray-900 dark:text-white">{{ user.followers.totalCount }}</span>
         followers -
-        <span class="text-gray-900">{{ user.following.totalCount }}</span>
+        <span class="text-gray-900 dark:text-white">{{ user.following.totalCount }}</span>
         following
       </span>
     </div>

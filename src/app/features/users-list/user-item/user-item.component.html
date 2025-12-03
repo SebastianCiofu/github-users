@@ -1,9 +1,16 @@
-<a [routerLink]="['/user', user.login]" class="card flex items-center gap-4 group cursor-pointer">
-  <img [src]="user.avatarUrl" [alt]="user.login" class="w-14 h-14 rounded-full ring-2 ring-gray-200 group-hover:ring-blue-600" />
+<a
+  [routerLink]="['/user', user.login]"
+  class="card flex items-center gap-4 group cursor-pointer bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700"
+>
+  <img
+    [src]="user.avatarUrl"
+    [alt]="user.login"
+    class="w-14 h-14 rounded-full ring-2 ring-gray-200 dark:ring-gray-600 group-hover:ring-blue-600"
+  />
   <div class="flex-1 min-w-0">
-    <h2 class="text-gray-900 font-semibold group-hover:text-blue-600">
+    <h2 class="text-gray-900 dark:text-white font-semibold group-hover:text-blue-600">
       {{ user.login }}
     </h2>
-    <p class="text-gray-500 text-sm truncate">{{ user.url }}</p>
+    <p class="text-gray-500 dark:text-gray-400 text-sm truncate">{{ user.url }}</p>
   </div>
 </a>
