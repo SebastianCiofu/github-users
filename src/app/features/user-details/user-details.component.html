@@ -13,9 +13,7 @@
         <div>
           <div class="flex items-center justify-between mb-4">
             <h2 class="text-xl font-bold text-gray-900">Repositories</h2>
-            <span class="text-gray-500 text-sm"
-              >{{ state.repoCount }} total</span
-            >
+            <span class="text-gray-500 text-sm">{{ state.repoCount }} total</span>
           </div>
 
           @if (state.repos.length === 0) {
@@ -30,10 +28,7 @@
             </div>
 
             @if (state.hasMore) {
-              <div
-                #scrollTrigger
-                class="mt-6 h-16 flex justify-center items-center"
-              >
+              <div #scrollTrigger class="mt-6 h-16 flex justify-center items-center">
                 @if (state.loadingMore) {
                   <span class="text-gray-500 text-sm">Loading more...</span>
                 }

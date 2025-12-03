@@ -1,26 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import {
-  GET_USER_DETAILS_QUERY,
-  SEARCH_USERS_QUERY,
-} from '../graphql/github.queries';
-import {
-  SearchUsersResponse,
-  SearchUsersResult,
-  UserDetailsResponse,
-  UserDetailsResult,
-} from '../models/github.models';
+import { GET_USER_DETAILS_QUERY, SEARCH_USERS_QUERY } from '../graphql/github.queries';
+import { SearchUsersResponse, SearchUsersResult, UserDetailsResponse, UserDetailsResult } from '../models/github.models';
 
 @Injectable({ providedIn: 'root' })
 export class GithubService {
   private readonly apollo = inject(Apollo);
 
-  searchUsers(
-    first = 10,
-    after?: string | null,
-    searchTerm?: string,
-  ): Observable<SearchUsersResult> {
+  searchUsers(first = 10, after?: string | null, searchTerm?: string): Observable<SearchUsersResult> {
     const query = searchTerm ? `type:user ${searchTerm}` : 'type:user';
     return this.apollo
       .query<SearchUsersResponse>({
@@ -45,11 +33,7 @@ export class GithubService {
       );
   }
 
-  getUserDetails(
-    username: string,
-    repoFirst = 10,
-    repoAfter?: string | null,
-  ): Observable<UserDetailsResult> {
+  getUserDetails(username: string, repoFirst = 10, repoAfter?: string | null): Observable<UserDetailsResult> {
     return this.apollo
       .query<UserDetailsResponse>({
         query: GET_USER_DETAILS_QUERY,

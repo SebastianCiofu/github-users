@@ -12,26 +12,20 @@
       <div class="flex flex-wrap items-center gap-4 mt-3 text-xs text-gray-500">
         @if (repo.primaryLanguage) {
           <span
-            >Language:
-            <span class="text-gray-900">{{
-              repo.primaryLanguage.name
-            }}</span></span
+            >Language: <span class="text-gray-900">{{ repo.primaryLanguage.name }}</span></span
           >
         }
         <span
-          >Stars:
-          <span class="text-gray-900">{{ repo.stargazerCount }}</span></span
+          >Stars: <span class="text-gray-900">{{ repo.stargazerCount }}</span></span
         >
         <span
           >Forks: <span class="text-gray-900">{{ repo.forkCount }}</span></span
         >
-        <span>Updated {{ repo.updatedAt | date: "MMM d, yyyy" }}</span>
+        <span>Updated {{ repo.updatedAt | date: 'MMM d, yyyy' }}</span>
       </div>
     </div>
     @if (repo.isPrivate) {
-      <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full"
-        >Private</span
-      >
+      <span class="px-2 py-1 bg-amber-100 text-amber-700 text-xs rounded-full">Private</span>
     }
   </div>
 </a>

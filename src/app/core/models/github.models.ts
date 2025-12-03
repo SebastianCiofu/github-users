@@ -41,7 +41,7 @@ export interface SearchUsersResponse {
   search: {
     userCount: number;
     pageInfo: PageInfo;
-    edges: Array<{ node: GitHubUser }>;
+    edges: { node: GitHubUser }[];
   };
 }
 

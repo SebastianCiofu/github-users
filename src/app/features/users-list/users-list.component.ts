@@ -15,16 +15,7 @@ import { LoadingSpinnerComponent } from '../../shared/loading-spinner/loading-sp
 import { ErrorComponent } from '../../shared/error/error.component';
 import { UserItemComponent } from './user-item/user-item.component';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import {
-  BehaviorSubject,
-  catchError,
-  debounceTime,
-  Observable,
-  of,
-  Subject,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject, catchError, debounceTime, Observable, of, Subject, switchMap, tap } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
 import { GithubService } from '../../core/services/github.service';
 import { FormsModule } from '@angular/forms';
@@ -42,14 +33,7 @@ interface UsersState {
 @Component({
   selector: 'app-users-list',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    LoadingSpinnerComponent,
-    ErrorComponent,
-    UserItemComponent,
-    AsyncPipe,
-    FormsModule,
-  ],
+  imports: [HeaderComponent, LoadingSpinnerComponent, ErrorComponent, UserItemComponent, AsyncPipe, FormsModule],
   templateUrl: './users-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -130,12 +114,7 @@ export class UsersListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.observer = new IntersectionObserver(
       (entries) => {
         const state = this.stateSubject.value;
-        if (
-          entries[0].isIntersecting &&
-          !state.loadingMore &&
-          !state.loading &&
-          state.hasMore
-        ) {
+        if (entries[0].isIntersecting && !state.loadingMore && !state.loading && state.hasMore) {
           this.loadMore();
         }
       },
@@ -163,11 +142,7 @@ export class UsersListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.stateSubject.next({ ...this.stateSubject.value, loadingMore: true });
 
     this.githubService
-      .searchUsers(
-        10,
-        this.pageInfo.endCursor,
-        this.stateSubject.value.searchTerm,
-      )
+      .searchUsers(10, this.pageInfo.endCursor, this.stateSubject.value.searchTerm)
       .pipe(
         catchError((e) => {
           this.stateSubject.next({

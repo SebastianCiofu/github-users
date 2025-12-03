@@ -12,15 +12,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
-import {
-  BehaviorSubject,
-  catchError,
-  filter,
-  Observable,
-  of,
-  switchMap,
-  tap,
-} from 'rxjs';
+import { BehaviorSubject, catchError, filter, Observable, of, switchMap, tap } from 'rxjs';
 import { GitHubUserDetails } from '../../core/models/github.models';
 import { PageInfo, Repository } from '../../core/models/github.models';
 import { GithubService } from '../../core/services/github.service';
@@ -43,14 +35,7 @@ interface UserDetailsState {
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [
-    HeaderComponent,
-    LoadingSpinnerComponent,
-    ErrorComponent,
-    RepoItemComponent,
-    UserProfileComponent,
-    AsyncPipe,
-  ],
+  imports: [HeaderComponent, LoadingSpinnerComponent, ErrorComponent, RepoItemComponent, UserProfileComponent, AsyncPipe],
   templateUrl: './user-details.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -74,8 +59,7 @@ export class UserDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     error: null,
     hasMore: false,
   });
-  public readonly state$: Observable<UserDetailsState> =
-    this.stateSubject.asObservable();
+  public readonly state$: Observable<UserDetailsState> = this.stateSubject.asObservable();
 
   ngOnInit() {
     this.route.paramMap
@@ -92,18 +76,16 @@ export class UserDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
           return true;
         }),
         switchMap(() =>
-          this.githubService
-            .getUserDetails(this.userNameSubject.value, 10)
-            .pipe(
-              catchError((e) => {
-                this.stateSubject.next({
-                  ...this.stateSubject.value,
-                  loading: false,
-                  error: e.message,
-                });
-                return of(null);
-              }),
-            ),
+          this.githubService.getUserDetails(this.userNameSubject.value, 10).pipe(
+            catchError((e) => {
+              this.stateSubject.next({
+                ...this.stateSubject.value,
+                loading: false,
+                error: e.message,
+              });
+              return of(null);
+            }),
+          ),
         ),
         takeUntilDestroyed(this.destroyRef),
       )
@@ -135,12 +117,7 @@ export class UserDetailsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.observer = new IntersectionObserver(
       (entries) => {
         const state = this.stateSubject.value;
-        if (
-          entries[0].isIntersecting &&
-          !state.loadingMore &&
-          !state.loading &&
-          state.hasMore
-        ) {
+        if (entries[0].isIntersecting && !state.loadingMore && !state.loading && state.hasMore) {
           this.loadMore();
         }
       },

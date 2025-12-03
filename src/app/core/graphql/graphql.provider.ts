@@ -10,23 +10,15 @@ export function createApollo() {
 
   const authLink = new ApolloLink((operation, forward) => {
     operation.setContext({
-      headers: new HttpHeaders().set(
-        'Authorization',
-        `Bearer ${environment.githubToken}`,
-      ),
+      headers: new HttpHeaders().set('Authorization', `Bearer ${environment.githubToken}`),
     });
     return forward(operation);
   });
 
   return {
-    link: authLink.concat(
-      httpLink.create({ uri: 'https://api.github.com/graphql' }),
-    ),
+    link: authLink.concat(httpLink.create({ uri: 'https://api.github.com/graphql' })),
     cache: new InMemoryCache(),
   };
 }
 
-export const graphqlProviders: Provider[] = [
-  Apollo,
-  { provide: APOLLO_OPTIONS, useFactory: createApollo, deps: [HttpLink] },
-];
+export const graphqlProviders: Provider[] = [Apollo, { provide: APOLLO_OPTIONS, useFactory: createApollo, deps: [HttpLink] }];

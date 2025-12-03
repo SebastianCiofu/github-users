@@ -8,16 +8,10 @@ export const routes: Routes = [
   },
   {
     path: 'user/:username',
-    loadComponent: () =>
-      import('./features/user-details/user-details.component').then(
-        (m) => m.UserDetailsComponent,
-      ),
+    loadComponent: () => import('./features/user-details/user-details.component').then((m) => m.UserDetailsComponent),
   },
   {
     path: '**',
-    loadComponent: () =>
-      import('./features/not-found/not-found.component').then(
-        (m) => m.NotFoundComponent,
-      ),
+    loadComponent: () => import('./features/not-found/not-found.component').then((m) => m.NotFoundComponent),
   },
 ];
